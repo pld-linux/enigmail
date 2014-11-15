@@ -170,7 +170,7 @@ Summary:	Iceape extension for the authentication and encryption features provide
 Summary(pl.UTF-8):	Rozszerzenie Iceape'a do uwierzytelniania i szyfrowania zapewnianego przez GnuPG
 Group:		X11/Applications/Mail
 Requires:	gnupg
-Requires:	icedove >= 2.26
+Requires:	iceape >= 2.26
 Obsoletes:	seamonkey-addon-enigmail
 
 %description -n iceape-addon-enigmail
