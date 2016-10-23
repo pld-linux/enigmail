@@ -210,7 +210,7 @@ Główne możliwości:
 %build
 %configure
 
-%{__make}
+%{__make} -j1
 
 %install
 for prog in %{?with_thunderbird:mozilla-thunderbird} %{?with_seamonkey:seamonkey} %{?with_icedove:icedove} %{?with_iceape:iceape} ; do
