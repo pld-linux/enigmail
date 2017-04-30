@@ -1,8 +1,8 @@
 #
 # Conditional build:
-%bcond_with	thunderbird	# Mozilla Thunderbird addon
+%bcond_without	thunderbird	# Mozilla Thunderbird addon
 %bcond_with	seamonkey	# Mozilla SeaMonkey addon
-%bcond_without	icedove		# Icedove addon
+%bcond_with	icedove		# Icedove addon
 %bcond_without	iceape		# Iceape addon
 # aliases:
 %bcond_with	mozilla		# build both Mozilla packages
@@ -20,7 +20,7 @@ Summary:	Mozilla mail clients extension for the GnuPG authentication and encrypt
 Summary(pl.UTF-8):	Rozszerzenie klientów pocztowych Mozilla do uwierzytelniania i szyfrowania w oparciu o GnuPG
 Name:		enigmail
 Version:	1.9.5
-Release:	1
+Release:	2
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Mail
@@ -62,15 +62,15 @@ Główne możliwości:
   podpisywania dla każdego adresata
 - interfejs do zarządzania kluczami OpenPGP
 
-%package -n mozilla-thunderbird-addon-enigmail
+%package -n thunderbird-addon-enigmail
 Summary:	Thunderbird extension for the authentication and encryption features provided by GnuPG
 Summary(pl.UTF-8):	Rozszerzenie Thunderbirda do uwierzytelniania i szyfrowania zapewnianego przez GnuPG
 Group:		X11/Applications/Mail
 Requires:	gnupg2 >= 2.0.7
 Requires:	gnupg-agent >= 2.0.7
-Requires:	mozilla-thunderbird >= 38.0
+Requires:	thunderbird >= 38.0
 
-%description -n mozilla-thunderbird-addon-enigmail
+%description -n thunderbird-addon-enigmail
 Enigmail is an extension to the Mozilla Thunderbird mail client of
 which allows users to access the authentication and encryption
 features provided by GnuPG.
@@ -83,7 +83,7 @@ Main Features:
   enabling/disabling encryption and signing
 - OpenPGP key management interface
 
-%description -n mozilla-thunderbird-addon-enigmail -l pl.UTF-8
+%description -n thunderbird-addon-enigmail -l pl.UTF-8
 Enigmail to rozszerzenie klienta pocztowego Mozilla Thunderbird,
 pozwalające użytkownikom na dostęp do uwierzytelniania i szyfrowania
 zapewnianego przez GnuPG.
@@ -213,7 +213,7 @@ Główne możliwości:
 %{__make} -j1
 
 %install
-for prog in %{?with_thunderbird:mozilla-thunderbird} %{?with_seamonkey:seamonkey} %{?with_icedove:icedove} %{?with_iceape:iceape} ; do
+for prog in %{?with_thunderbird:thunderbird} %{?with_seamonkey:seamonkey} %{?with_icedove:icedove} %{?with_iceape:iceape} ; do
 ext_dir=$RPM_BUILD_ROOT%{_libdir}/$prog/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}
 install -d $ext_dir/{chrome,components,defaults/preferences,modules,wrappers}
 cp -p build/dist/chrome/enigmail.jar $ext_dir/chrome
@@ -242,7 +242,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{1}/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/install.rdf\
 %{nil}
 
-%{?with_thunderbird:%{expand:%genfiles mozilla-thunderbird}}
+%{?with_thunderbird:%{expand:%genfiles thunderbird}}
 %{?with_seamonkey:%{expand:%genfiles seamonkey}}
 %{?with_icedove:%{expand:%genfiles icedove}}
 %{?with_iceape:%{expand:%genfiles iceape}}
