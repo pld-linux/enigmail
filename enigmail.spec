@@ -69,6 +69,8 @@ Group:		X11/Applications/Mail
 Requires:	gnupg2 >= 2.0.7
 Requires:	gnupg-agent >= 2.0.7
 Requires:	thunderbird >= 38.0
+Obsoletes:	icedove-addon-enigmail
+Obsoletes:	mozilla-thunderbird-addon-enigmail
 
 %description -n thunderbird-addon-enigmail
 Enigmail is an extension to the Mozilla Thunderbird mail client of
