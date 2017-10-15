@@ -1,11 +1,11 @@
 #
 # Conditional build:
 %bcond_without	thunderbird	# Mozilla Thunderbird addon
-%bcond_with	seamonkey	# Mozilla SeaMonkey addon
-%bcond_without	iceape		# Iceape addon
+%bcond_without	seamonkey	# Mozilla SeaMonkey addon
+%bcond_with	iceape		# Iceape addon
 # aliases:
-%bcond_with	mozilla		# build both Mozilla packages
-%bcond_without	iceapps		# don't build any Ice* packages
+%bcond_without	mozilla		# build both Mozilla packages
+%bcond_with	iceapps		# build Ice* packages
 
 %if %{with mozilla}
 %define		with_thunderbird	1
@@ -18,7 +18,7 @@ Summary:	Mozilla mail clients extension for the GnuPG authentication and encrypt
 Summary(pl.UTF-8):	Rozszerzenie klientów pocztowych Mozilla do uwierzytelniania i szyfrowania w oparciu o GnuPG
 Name:		enigmail
 Version:	1.9.5
-Release:	3
+Release:	4
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Mail
@@ -105,6 +105,8 @@ Group:		X11/Applications/Mail
 Requires:	gnupg2 >= 2.0.7
 Requires:	gnupg-agent >= 2.0.7
 Requires:	seamonkey >= 2.35
+Obsoletes:	iceape-addon-enigmail
+BuildArch:	noarch
 
 %description -n seamonkey-addon-enigmail
 Enigmail is an extension to the mail client of Mozilla SeaMonkey which
@@ -178,7 +180,7 @@ Główne możliwości:
 %{__make} -j1
 
 %install
-for prog in %{?with_seamonkey:seamonkey} %{?with_iceape:iceape} ; do
+for prog in %{?with_iceape:iceape} ; do
 ext_dir=$RPM_BUILD_ROOT%{_libdir}/$prog/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}
 install -d $ext_dir/{chrome,components,defaults/preferences,modules,wrappers}
 cp -p build/dist/chrome/enigmail.jar $ext_dir/chrome
@@ -190,7 +192,7 @@ cp -p build/dist/chrome.manifest $ext_dir
 cp -p build/dist/install.rdf $ext_dir
 done
 
-for prog in %{?with_thunderbird:thunderbird} ; do
+for prog in %{?with_thunderbird:thunderbird} %{?with_seamonkey:seamonkey} ; do
 ext_dir=$RPM_BUILD_ROOT%{_datadir}/$prog/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}
 install -d $ext_dir/{chrome,components,defaults/preferences,modules,wrappers}
 cp -p build/dist/chrome/enigmail.jar $ext_dir/chrome
@@ -220,5 +222,5 @@ rm -rf $RPM_BUILD_ROOT
 %{nil}
 
 %{?with_thunderbird:%{expand:%genfiles thunderbird %{_datadir}}}
-%{?with_seamonkey:%{expand:%genfiles seamonkey %{_libdir}}}
+%{?with_seamonkey:%{expand:%genfiles seamonkey %{_datadir}}}
 %{?with_iceape:%{expand:%genfiles iceape %{_libdir}}}
