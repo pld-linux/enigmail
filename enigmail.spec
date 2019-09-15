@@ -7,7 +7,7 @@ Summary:	Mozilla mail clients extension for the GnuPG authentication and encrypt
 Summary(pl.UTF-8):	Rozszerzenie klientów pocztowych Mozilla do uwierzytelniania i szyfrowania w oparciu o GnuPG
 Name:		enigmail
 Version:	2.1.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Mail
@@ -134,8 +134,8 @@ Główne możliwości:
 %{__make} -j1
 
 %install
-install -d $RPM_BUILD_ROOT%{_datadir}/thunderbird/distribution/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}
-unzip build/%{name}-%{version}.xpi -d $RPM_BUILD_ROOT%{_datadir}/thunderbird/distribution/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}/
+install -d $RPM_BUILD_ROOT%{_datadir}/thunderbird/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}
+unzip build/%{name}-%{version}.xpi -d $RPM_BUILD_ROOT%{_datadir}/thunderbird/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}/
 
 install -d $RPM_BUILD_ROOT%{_datadir}/seamonkey/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}
 unzip build/%{name}-%{version}.xpi -d $RPM_BUILD_ROOT%{_datadir}/seamonkey/extensions/\{847b3a00-7ab1-11d4-8f02-006008948af5\}
@@ -146,12 +146,12 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with thunderbird}
 %files -n thunderbird-addon-enigmail
 %defattr(644,root,root,755)
-%dir %{_datadir}/thunderbird/distribution/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}
-%{_datadir}/thunderbird/distribution/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/chrome
-%{_datadir}/thunderbird/distribution/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/bootstrap.js
-%{_datadir}/thunderbird/distribution/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/chrome.manifest
-%{_datadir}/thunderbird/distribution/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/install.rdf
-%{_datadir}/thunderbird/distribution/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/manifest.json
+%dir %{_datadir}/thunderbird/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}
+%{_datadir}/thunderbird/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/chrome
+%{_datadir}/thunderbird/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/bootstrap.js
+%{_datadir}/thunderbird/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/chrome.manifest
+%{_datadir}/thunderbird/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/install.rdf
+%{_datadir}/thunderbird/extensions/{847b3a00-7ab1-11d4-8f02-006008948af5}/manifest.json
 %endif
 
 %if %{with seamonkey}
